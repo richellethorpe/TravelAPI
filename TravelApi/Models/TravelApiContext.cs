@@ -22,8 +22,12 @@ namespace TravelApi.Models
 
      builder.Entity<Review>()
         .HasData(
-          new Review { ReviewId = 1, DestinationId = 1, Title = "Beautiful Temples", Author = "TestPerson 1", ReviewBody = "Blah blah blah", starRating = 4},
-          new Review { ReviewId = 2, DestinationId = 1, Title = "Big Crowds", Author = "TestPerson 2", ReviewBody = "Blah de blah de blah", starRating = 5}
+          new Review { ReviewId = 1, DestinationId = 1, Title = "Beautiful Temples", Author = "Bobby B", ReviewBody = "Blah blah blah", starRating = 4},
+          new Review { ReviewId = 2, DestinationId = 1, Title = "Big Crowds", Author = "Shelley G", ReviewBody = "Blah de blah de blah", starRating = 5},
+          new Review { ReviewId = 3, DestinationId = 2, Title = "Very nice and pretty", Author = "Alex R", ReviewBody = "We done saw that pretty church", starRating = 4},
+          new Review { ReviewId = 4, DestinationId = 3, Title = "A+ for game of thrones fans", Author = "Jasmine L", ReviewBody = "Fun trip to see where game of thrones was filmed", starRating = 5},
+          new Review { ReviewId = 5, DestinationId = 2, Title = "Great Food", Author = "Tucker B", ReviewBody = "We loved the catherdral and city", starRating = 3},
+          new Review { ReviewId = 6, DestinationId = 1, Title = "Too Hot", Author = "Jenny C", ReviewBody = "The weather was scortching", starRating = 1}
 
         );   
     }

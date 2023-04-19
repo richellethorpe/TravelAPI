@@ -25,7 +25,11 @@ namespace TravelApi.Controllers
         public async Task<ActionResult<IEnumerable<Review>>> GetReviews([FromQuery] PaginationFilter filter)
         {
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            return await _context.Reviews.ToListAsync();
+            List<Review> PagedResponse = await _context.Reviews
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .ToListAsync();
+            return Ok(new PagedResponse<List<Review>>(PagedResponse, validFilter.PageNumber, validFilter.PageSize));
         }
 
         // GET: api/Reviews/5
@@ -36,7 +40,10 @@ namespace TravelApi.Controllers
 
             if (review == null)
             {
-                return NotFound();
+                Response<Review> response = new Response<Review>();
+                response.Succeeded = false;
+                response.Message = "Review was not found in the database";
+                return NotFound(response);
             }
 
             return Ok(new Response<Review> (review));
