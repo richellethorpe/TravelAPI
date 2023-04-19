@@ -22,8 +22,9 @@ namespace TravelApi.Controllers
 
         // GET: api/Reviews
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviews([FromQuery] PaginationFilter filter)
         {
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
             return await _context.Reviews.ToListAsync();
         }
 
