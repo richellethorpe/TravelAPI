@@ -30,7 +30,7 @@ namespace TravelApi.Controllers
 
         // GET: api/Reviews/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Review>> GetReview(int id)
+        public async Task<IActionResult> GetReview(int id)
         {
             var review = await _context.Reviews.Include(review => review.destination).FirstOrDefaultAsync(review => review.ReviewId == id);
 
@@ -39,7 +39,7 @@ namespace TravelApi.Controllers
                 return NotFound();
             }
 
-            return review;
+            return Ok(new Response<Review> (review));
         }
 
         // PUT: api/Reviews/5
